@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="jumbotron">
+  <h1 class="display-4">学生信息管理系统</h1>
+  <p class="lead">Student information management system can be more convenient and faster to manage students</p>
+  <hr class="my-4">
+  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+</div>
+<div>
+<form class="form-inline my-2 my-lg-0" method="POST">
+      <input class="form-control mr-sm-2" type="search" placeholder="请输入你要搜索的学生姓名" aria-label="Search" name="search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">查询</button>
+    </form>
+    </div>
+<table class="table">
+
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">学生姓名</th>
+      <th scope="col">python成绩</th>
+      <th scope="col">大数据成绩</th>
+      <th scope="col">H5成绩</th>
+      <th scope="col">总成绩</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% if a %}
+  {% for i in a %}
+    <tr>
+      <th scope="row">{{ i.rfind[0].id }}</th>
+      <td>{{ i.name }}</td>
+      <td>{{ i.rfind[0].python }}</td>
+      <td>{{ i.rfind[0].big_data }} </td>
+      <td>{{ i.rfind[0].h5 }}</td>
+      <td>{{ i.rfind[0].total_score }}</td>
+      <td><a href="?id={{ i.rfind[0].id }}"><input type="button" value="删除"></a></td>
+      <td><a href="{{ url_for("alter") }}?id={{ i.rfind[0].id }}"><input type="button" value="修改"></a></td>
+    </tr>
+  {% endfor %}
+  {% elif w %}
+        {% for i in w %}
+    <tr>
+      <th scope="row">{{ i.id }}</th>
+      <td>{{ i.g_cus.name }}</td>
+      <td>{{ i.python }}</td>
+      <td>{{ i.big_data }} </td>
+      <td>{{ i.h5 }}</td>
+      <td>{{ i.total_score }}</td>
+      <td><a href="?id={{ i.id }}"><input type="button" value="删除"></a></td>
+      <td><a href="{{ url_for("alter") }}?id={{ i.id }}"><input type="button" value="修改"></a></td>
+    </tr>
+  {% endfor %}
+  {% endif %}
+  </tbody>
+</table>
+<div class="btn-group" role="group" aria-label="Basic example">
+    <a href="{{ url_for("add") }}"><button type="button" class="btn btn-secondary" name="add">添加学生信息</button></a>
+    <a href="{{ url_for("index") }}?sort=1"><button type="button" class="btn btn-secondary">升序</button></a>
+    <a href="{{ url_for("index") }}?sort=2"><button type="button" class="btn btn-secondary">降序</button></a>
+</div>
+</body>
+</html>
